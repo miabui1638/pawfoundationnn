@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report a Stray - PAW</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-sans text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md py-4 px-6 flex items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <img src="emma.png" alt="PAW Logo" class="w-12 h-12 rounded-full shadow-md">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-700">PAW</h1>
+        <p class="text-sm text-gray-500 italic">A trainer. A friend. A future.</p>
+      </div>
+    </div>
+    <nav class="space-x-6">
+      <a href="index.html" class="text-gray-700 hover:text-blue-600">Home</a>
+      <a href="stories.html" class="text-gray-700 hover:text-blue-600">Adoption Stories</a>
+      <a href="report.html" class="text-gray-700 hover:text-blue-600">Report</a>
+      <a href="finder.html" class="text-gray-700 hover:text-blue-600">Pet Finder</a>
+    </nav>
+  </header>
+
+  <!-- Report Form -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-6 bg-white p-8 rounded-2xl shadow-md">
+      <h2 class="text-3xl font-bold text-center mb-6 text-blue-700">Report a Stray Animal</h2>
+      <form class="space-y-4">
+
+        <div>
+          <label class="block text-gray-700 font-semibold">Animal Type</label>
+          <select class="w-full border rounded-lg px-4 py-2 mt-1">
+            <option>Dog</option>
+            <option>Cat</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-semibold">Location Found</label>
+          <input type="text" placeholder="Enter location" class="w-full border rounded-lg px-4 py-2 mt-1">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-semibold">Appearance Description</label>
+          <textarea placeholder="Describe size, color, or unique features" class="w-full border rounded-lg px-4 py-2 mt-1"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-semibold">Additional Notes</label>
+          <textarea placeholder="Any extra details?" class="w-full border rounded-lg px-4 py-2 mt-1"></textarea>
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+          Submit Report
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white text-center py-6">
+    <p>&copy; 2025 PAW | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
