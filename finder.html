@@ -12,7 +12,7 @@
   <nav class="bg-green-600 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center space-x-3">
-        <img src="your-logo.png" alt="PAW Logo" class="w-10 h-10">
+        <img src="logo.png" alt="PAW Logo" class="w-10 h-10">
         <span class="text-xl font-bold">PAW Foundation</span>
       </div>
       <div class="space-x-6">
@@ -50,19 +50,19 @@
     <!-- Adoption Ready Yes/No -->
     <div class="mb-6">
       <h3 class="text-lg font-semibold mb-2">Do you want a pet that is ready for adoption?</h3>
-      <div class="flex space-x-4">
-        <button 
-          type="button" 
-          id="yesBtn" 
-          class="px-6 py-2 rounded-lg border border-gray-300 hover:bg-green-100"
-          onclick="selectOption('yes')"
-        >Yes</button>
-        <button 
-          type="button" 
-          id="noBtn" 
-          class="px-6 py-2 rounded-lg border border-gray-300 hover:bg-red-100"
-          onclick="selectOption('no')"
-        >No</button>
+      <div class="flex space-x-6">
+        <label class="cursor-pointer">
+          <input type="radio" name="adoptionReady" value="yes" class="hidden peer">
+          <div class="px-6 py-2 border border-gray-300 rounded-lg peer-checked:bg-green-500 peer-checked:text-white hover:bg-green-100">
+            Yes
+          </div>
+        </label>
+        <label class="cursor-pointer">
+          <input type="radio" name="adoptionReady" value="no" class="hidden peer">
+          <div class="px-6 py-2 border border-gray-300 rounded-lg peer-checked:bg-red-500 peer-checked:text-white hover:bg-red-100">
+            No
+          </div>
+        </label>
       </div>
     </div>
 
@@ -91,20 +91,6 @@
   <footer class="bg-green-600 text-white text-center p-4 mt-10">
     <p>&copy; 2025 PAW Foundation. All rights reserved.</p>
   </footer>
-
-  <!-- Yes/No Button Script -->
-  <script>
-    function selectOption(choice) {
-      document.getElementById('yesBtn').classList.remove('bg-green-500', 'text-white');
-      document.getElementById('noBtn').classList.remove('bg-red-500', 'text-white');
-
-      if (choice === 'yes') {
-        document.getElementById('yesBtn').classList.add('bg-green-500', 'text-white');
-      } else {
-        document.getElementById('noBtn').classList.add('bg-red-500', 'text-white');
-      }
-    }
-  </script>
 
 </body>
 </html>
