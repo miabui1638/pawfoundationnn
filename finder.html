@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAW Foundation - Pet Finder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-green-600 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <img src="your-logo.png" alt="PAW Logo" class="w-10 h-10">
+        <span class="text-xl font-bold">PAW Foundation</span>
+      </div>
+      <div class="space-x-6">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="stories.html" class="hover:underline">Adoption Stories</a>
+        <a href="finder.html" class="hover:underline">Pet Finder</a>
+        <a href="report.html" class="hover:underline">Stray Report</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">Find Your Perfect Pet</h1>
+
+    <!-- Pet Type -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold mb-2">Do you prefer a dog or cat?</h3>
+      <select class="w-full p-3 border rounded-lg">
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+      </select>
+    </div>
+
+    <!-- Age -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold mb-2">Preferred age?</h3>
+      <select class="w-full p-3 border rounded-lg">
+        <option value="puppy">Puppy/Kitten</option>
+        <option value="adult">Adult</option>
+        <option value="senior">Senior</option>
+      </select>
+    </div>
+
+    <!-- Adoption Ready Yes/No -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold mb-2">Do you want a pet that is ready for adoption?</h3>
+      <div class="flex space-x-4">
+        <button 
+          type="button" 
+          id="yesBtn" 
+          class="px-6 py-2 rounded-lg border border-gray-300 hover:bg-green-100"
+          onclick="selectOption('yes')"
+        >Yes</button>
+        <button 
+          type="button" 
+          id="noBtn" 
+          class="px-6 py-2 rounded-lg border border-gray-300 hover:bg-red-100"
+          onclick="selectOption('no')"
+        >No</button>
+      </div>
+    </div>
+
+    <!-- Example Pets -->
+    <h2 class="text-2xl font-bold mt-10 mb-4">Available Pets</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow">
+        <img src="emma.png" alt="Emma the dog" class="w-full h-48 object-cover rounded">
+        <h3 class="text-lg font-semibold mt-2">Emma</h3>
+        <p class="text-gray-600">2-year-old playful dog.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <img src="alex.png" alt="Alex the cat" class="w-full h-48 object-cover rounded">
+        <h3 class="text-lg font-semibold mt-2">Alex</h3>
+        <p class="text-gray-600">Calm 3-year-old cat.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <img src="luna.png" alt="Luna the puppy" class="w-full h-48 object-cover rounded">
+        <h3 class="text-lg font-semibold mt-2">Luna</h3>
+        <p class="text-gray-600">Friendly 6-month-old puppy.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-green-600 text-white text-center p-4 mt-10">
+    <p>&copy; 2025 PAW Foundation. All rights reserved.</p>
+  </footer>
+
+  <!-- Yes/No Button Script -->
+  <script>
+    function selectOption(choice) {
+      document.getElementById('yesBtn').classList.remove('bg-green-500', 'text-white');
+      document.getElementById('noBtn').classList.remove('bg-red-500', 'text-white');
+
+      if (choice === 'yes') {
+        document.getElementById('yesBtn').classList.add('bg-green-500', 'text-white');
+      } else {
+        document.getElementById('noBtn').classList.add('bg-red-500', 'text-white');
+      }
+    }
+  </script>
+
+</body>
+</html>
