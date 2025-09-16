@@ -1,143 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pawsite</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAW - Pet Adoption Website</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-white text-gray-900 font-sans">
 
   <!-- Navbar -->
-  <nav class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center">
-    <div class="flex items-center space-x-3">
-      <img src="your-logo.png" alt="Pawsite Logo" class="h-10 w-10 rounded-full">
-      <span class="text-2xl font-bold">Pawsite</span>
+  <header class="bg-blue-600 shadow-md">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <img src="logo.png" alt="PAW Logo" class="h-10 w-auto"> 
+        <span class="text-white text-2xl font-bold">PAW</span>
+      </div>
+      <nav class="space-x-6 hidden md:flex">
+        <a href="#about" class="text-white hover:text-blue-200">What is PAW?</a>
+        <a href="#problem" class="text-white hover:text-blue-200">Problem</a>
+        <a href="#vision" class="text-white hover:text-blue-200">Vision</a>
+        <a href="#mission" class="text-white hover:text-blue-200">Mission</a>
+        <a href="#finder" class="text-white hover:text-blue-200">Pet Finder</a>
+      </nav>
     </div>
-    <div class="space-x-6">
-      <a href="#about" class="hover:text-yellow-300">About</a>
-      <a href="#finder" class="hover:text-yellow-300">Pet Finder</a>
-      <a href="#contact" class="hover:text-yellow-300">Contact</a>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <header class="bg-blue-50 text-center py-16">
-    <h1 class="text-5xl font-bold text-blue-700">🐾 Welcome to Pawsite</h1>
-    <p class="mt-4 text-lg text-gray-700">Find your forever friend today!</p>
   </header>
 
-<!-- Pet Finder (Blue Theme) -->
-<section id="finder" class="py-16 bg-blue-50">
-  <div class="max-w-lg mx-auto px-6 text-center">
-    <h2 class="text-3xl font-bold mb-6 text-blue-700">Find Your Pet ❤️🐶🐱</h2>
-    <div class="pet-stack relative h-96" id="petStack"></div>
-    <div class="mt-6 flex justify-center space-x-6">
-      <button id="noBtn" class="bg-red-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-red-600 transition">❌ No</button>
-      <button id="yesBtn" class="bg-green-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-600 transition">❤️ Yes</button>
+  <!-- Hero -->
+  <section class="bg-blue-50 py-20 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-blue-700 mb-6">Welcome to PAW 🐾</h1>
+    <p class="max-w-2xl mx-auto text-lg text-gray-600">
+      Helping you connect with your new best friend. Adopt, don’t shop.
+    </p>
+  </section>
+
+  <!-- What is PAW -->
+  <section id="about" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-3xl font-bold text-blue-700 mb-4">What is PAW?</h2>
+      <p class="text-lg text-gray-600">
+        PAW is a platform that makes it easier for people to find, adopt, and connect with pets in need of a home.
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Script for Pet Finder -->
-<script>
-  const pets = [
-    { name: "Bella", img: "bella.png", desc: "Playful Golden Retriever" },
-    { name: "Milo", img: "milo.png", desc: "Curious little kitten" },
-    { name: "Max", img: "max.png", desc: "Energetic Labrador" }
-  ];
+  <!-- Problem, Vision, Mission -->
+  <section class="py-16 bg-blue-50">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6 text-center">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <h3 id="problem" class="text-2xl font-bold text-blue-700 mb-2">Problem</h3>
+        <p class="text-gray-600">Many stray animals remain homeless, and shelters are often overcrowded.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <h3 id="vision" class="text-2xl font-bold text-blue-700 mb-2">Vision</h3>
+        <p class="text-gray-600">A world where every pet has a safe, loving, and permanent home.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <h3 id="mission" class="text-2xl font-bold text-blue-700 mb-2">Mission</h3>
+        <p class="text-gray-600">To connect people with pets through a simple, fun, and meaningful adoption process.</p>
+      </div>
+    </div>
+  </section>
 
-  const stack = document.getElementById("petStack");
-
-  function renderStack() {
-    stack.innerHTML = "";
-    if (pets.length === 0) {
-      stack.innerHTML = `
-        <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-2 text-blue-700">No more pets available 🐾</h3>
-          <p class="text-gray-600">Check back soon for more adoptable friends!</p>
-        </div>
-      `;
-      return;
-    }
-
-    pets.forEach((pet, index) => {
-      const card = document.createElement("div");
-      card.className =
-        "pet-card bg-white rounded-2xl shadow-lg p-4 text-center absolute inset-0 transition-transform duration-300 ease-in-out";
-      card.style.zIndex = pets.length - index;
-      card.innerHTML = `
-        <img src="${pet.img}" alt="${pet.name}" class="mx-auto h-48 w-auto rounded-lg mb-4 object-cover">
-        <h3 class="text-
-
-
-<!-- Script for Pet Finder -->
-<script>
-  const pets = [
-    { name: "Bella", img: "bella.png", desc: "Playful Golden Retriever" },
-    { name: "Milo", img: "milo.png", desc: "Curious little kitten" },
-    { name: "Max", img: "max.png", desc: "Energetic Labrador" }
-  ];
-
-  const stack = document.getElementById("petStack");
-
-  function renderStack() {
-    stack.innerHTML = "";
-    if (pets.length === 0) {
-      stack.innerHTML = `
-        <div class="bg-blue-600 text-white rounded-2xl shadow-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-2">No more pets available 🐾</h3>
-          <p class="opacity-80">Check back soon for more adoptable friends!</p>
-        </div>
-      `;
-      return;
-    }
-
-    pets.forEach((pet, index) => {
-      const card = document.createElement("div");
-      card.className =
-        "pet-card bg-blue-600 text-white rounded-2xl shadow-lg p-4 text-center absolute inset-0 transition-transform duration-300 ease-in-out";
-      card.style.zIndex = pets.length - index;
-      card.innerHTML = `
-        <img src="${pet.img}" alt="${pet.name}" class="mx-auto h-48 w-auto rounded-lg mb-4 object-cover">
-        <h3 class="text-xl font-bold">${pet.name}</h3>
-        <p class="opacity-90">${pet.desc}</p>
-      `;
-      stack.appendChild(card);
-    });
-  }
-
-  function swipePet(choice) {
-    if (pets.length === 0) return;
-    const card = stack.firstChild;
-    card.style.transform =
-      choice === "yes"
-        ? "translateX(400px) rotate(20deg)"
-        : "translateX(-400px) rotate(-20deg)";
-    card.style.opacity = 0;
-
-    setTimeout(() => {
-      pets.shift();
-      renderStack();
-    }, 300);
-  }
-
-  document.getElementById("yesBtn").addEventListener("click", () => swipePet("yes"));
-  document.getElementById("noBtn").addEventListener("click", () => swipePet("no"));
-
-  renderStack();
-</script>
-
-
-  <!-- Contact -->
-  <section id="contact" class="py-16 bg-white text-center">
-    <h2 class="text-3xl font-bold text-blue-700 mb-4">Contact Us</h2>
-    <p class="text-gray-600">Email us at <a href="mailto:info@pawsite.com" class="text-blue-600 underline">info@pawsite.com</a></p>
+  <!-- Pet Finder -->
+  <section id="finder" class="py-16 bg-blue-50">
+    <div class="max-w-lg mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6 text-blue-700">Find Your Pet ❤️🐶🐱</h2>
+      <div class="pet-stack relative h-96" id="petStack"></div>
+      <div class="mt-6 flex justify-center space-x-6">
+        <button id="noBtn" class="bg-red-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-red-600 transition">❌ No</button>
+        <button id="yesBtn" class="bg-green-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-600 transition">❤️ Yes</button>
+      </div>
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-600 text-white text-center py-6">
-    <p>&copy; 2025 Pawsite | All Rights Reserved</p>
+  <footer class="bg-blue-600 text-center text-white py-6 mt-10">
+    <p>© 2025 PAW. All rights reserved.</p>
   </footer>
 
   <!-- Script for Pet Finder -->
@@ -155,7 +94,7 @@
       if (pets.length === 0) {
         stack.innerHTML = `
           <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
-            <h3 class="text-xl font-bold mb-2">No more pets available 🐾</h3>
+            <h3 class="text-xl font-bold mb-2 text-blue-700">No more pets available 🐾</h3>
             <p class="text-gray-600">Check back soon for more adoptable friends!</p>
           </div>
         `;
@@ -169,7 +108,7 @@
         card.style.zIndex = pets.length - index;
         card.innerHTML = `
           <img src="${pet.img}" alt="${pet.name}" class="mx-auto h-48 w-auto rounded-lg mb-4 object-cover">
-          <h3 class="text-xl font-bold">${pet.name}</h3>
+          <h3 class="text-xl font-bold text-blue-700">${pet.name}</h3>
           <p class="text-gray-600">${pet.desc}</p>
         `;
         stack.appendChild(card);
@@ -178,7 +117,7 @@
 
     function swipePet(choice) {
       if (pets.length === 0) return;
-      const card = stack.lastChild; // top card
+      const card = stack.firstChild;
       card.style.transform =
         choice === "yes"
           ? "translateX(400px) rotate(20deg)"
@@ -186,7 +125,7 @@
       card.style.opacity = 0;
 
       setTimeout(() => {
-        pets.pop(); // remove last pet (top card)
+        pets.shift();
         renderStack();
       }, 300);
     }
@@ -196,5 +135,6 @@
 
     renderStack();
   </script>
+
 </body>
 </html>
