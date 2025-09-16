@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pawsite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <img src="your-logo.png" alt="Pawsite Logo" class="h-10 w-10 rounded-full">
+      <span class="text-2xl font-bold">Pawsite</span>
+    </div>
+    <div class="space-x-6">
+      <a href="#about" class="hover:text-yellow-300">About</a>
+      <a href="#finder" class="hover:text-yellow-300">Pet Finder</a>
+      <a href="#contact" class="hover:text-yellow-300">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="bg-blue-50 text-center py-16">
+    <h1 class="text-5xl font-bold text-blue-700">🐾 Welcome to Pawsite</h1>
+    <p class="mt-4 text-lg text-gray-700">Find your forever friend today!</p>
+  </header>
+
+  <!-- Pet Finder (Tinder-style swipe) -->
+  <section id="finder" class="py-16 bg-blue-50">
+    <div class="max-w-lg mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6 text-blue-700">Find Your Pet ❤️🐶🐱</h2>
+      <div class="pet-stack relative h-96" id="petStack"></div>
+      <div class="mt-6 flex justify-center space-x-6">
+        <button id="noBtn" class="bg-red-500 text-white px-6 py-3 rounded-full shadow-lg">❌ No</button>
+        <button id="yesBtn" class="bg-green-500 text-white px-6 py-3 rounded-full shadow-lg">❤️ Yes</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 bg-white text-center">
+    <h2 class="text-3xl font-bold text-blue-700 mb-4">Contact Us</h2>
+    <p class="text-gray-600">Email us at <a href="mailto:info@pawsite.com" class="text-blue-600 underline">info@pawsite.com</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white text-center py-6">
+    <p>&copy; 2025 Pawsite | All Rights Reserved</p>
+  </footer>
+
+  <!-- Script for Pet Finder -->
+  <script>
+    const pets = [
+      { name: "Bella", img: "bella.png", desc: "Playful Golden Retriever" },
+      { name: "Milo", img: "milo.png", desc: "Curious little kitten" },
+      { name: "Max", img: "max.png", desc: "Energetic Labrador" }
+    ];
+
+    const stack = document.getElementById("petStack");
+
+    function renderStack() {
+      stack.innerHTML = "";
+      if (pets.length === 0) {
+        stack.innerHTML = `
+          <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <h3 class="text-xl font-bold mb-2">No more pets available 🐾</h3>
+            <p class="text-gray-600">Check back soon for more adoptable friends!</p>
+          </div>
+        `;
+        return;
+      }
+
+      pets.forEach((pet, index) => {
+        const card = document.createElement("div");
+        card.className =
+          "pet-card bg-white rounded-2xl shadow-lg p-4 text-center absolute inset-0 transition-transform duration-300 ease-in-out";
+        card.style.zIndex = pets.length - index;
+        card.innerHTML = `
+          <img src="${pet.img}" alt="${pet.name}" class="mx-auto h-48 w-auto rounded-lg mb-4 object-cover">
+          <h3 class="text-xl font-bold">${pet.name}</h3>
+          <p class="text-gray-600">${pet.desc}</p>
+        `;
+        stack.appendChild(card);
+      });
+    }
+
+    function swipePet(choice) {
+      if (pets.length === 0) return;
+      const card = stack.lastChild; // top card
+      card.style.transform =
+        choice === "yes"
+          ? "translateX(400px) rotate(20deg)"
+          : "translateX(-400px) rotate(-20deg)";
+      card.style.opacity = 0;
+
+      setTimeout(() => {
+        pets.pop(); // remove last pet (top card)
+        renderStack();
+      }, 300);
+    }
+
+    document.getElementById("yesBtn").addEventListener("click", () => swipePet("yes"));
+    document.getElementById("noBtn").addEventListener("click", () => swipePet("no"));
+
+    renderStack();
+  </script>
+</body>
+</html>
