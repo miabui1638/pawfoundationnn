@@ -69,90 +69,56 @@
     </div>
 
   <!-- Pet Finder (Tinder-style swipe) -->
-<!-- Card Stack -->
-<div class="pet-stack relative h-96 flex items-center justify-center" id="petStack"></div>
+<section id="adoption" class="py-20 bg-blue-50">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold text-blue-800 mb-8">Find Your Pet</h2>
 
-<!-- Buttons -->
-<div class="mt-6 flex justify-center space-x-6" id="finderButtons">
-  <button id="noBtn" class="bg-blue-400 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-500 transition">
-    ❌ No
-  </button>
-  <button id="yesBtn" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition">
-    ❤️ Yes
-  </button>
-</div>
+    <!-- Pet Card -->
+    <div id="pet-card" class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center">
+      <img id="pet-img" src="bella.png" alt="Pet" class="w-64 h-64 object-cover rounded-xl mb-4">
+      <h3 id="pet-name" class="text-xl font-semibold text-blue-700">Bella</h3>
+      <p id="pet-desc" class="text-gray-600">Playful Golden Retriever</p>
+    </div>
 
+    <!-- Yes/No Buttons -->
+    <div class="flex justify-center space-x-6 mt-6">
+      <button onclick="nextPet()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full text-lg font-bold">
+        ❌ No
+      </button>
+      <button onclick="nextPet()" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full text-lg font-bold">
+        ✅ Yes
+      </button>
+    </div>
 
-<!-- Script for Pet Finder -->
+    <!-- End Message -->
+    <p id="end-message" class="hidden text-xl font-bold text-blue-800 mt-6">
+      🐾 No more pets available 🐾
+    </p>
+  </div>
+</section>
+
 <script>
   const pets = [
-    { name: "Emma", img: "emma.png", desc: "Playful Golden Retriever" },
-    { name: "Alex", img: "alex.png", desc: "Curious little kitten" },
-    { name: "Sophia", img: "sophia.png", desc: "Energetic Labrador" }
+    { name: "Bella", img: "bella.png", desc: "Playful Golden Retriever" },
+    { name: "Milo", img: "milo.png", desc: "Curious little kitten" },
+    { name: "Max", img: "max.png", desc: "Energetic Labrador" }
   ];
 
-  const stack = document.getElementById("petStack");
+  let currentPet = 0;
 
-  function renderStack() {
-    stack.innerHTML = "";
-    pets.forEach((pet, index) => {
-      const card = document.createElement("div");
-      card.className = "pet-card bg-white rounded-2xl shadow-lg p-4 text-center absolute inset-0 transition-all duration-300";
-      card.style.zIndex = pets.length - index;
-      card.innerHTML = `
-        <img src="${pet.img}" alt="${pet.name}" class="mx-auto rounded-lg mb-4 max-h-48 object-cover">
-        <h3 class="text-xl font-bold">${pet.name}</h3>
-        <p class="text-gray-600">${pet.desc}</p>
-      `;
-      stack.appendChild(card);
-    });
+  function nextPet() {
+    currentPet++;
+    if (currentPet < pets.length) {
+      document.getElementById("pet-img").src = pets[currentPet].img;
+      document.getElementById("pet-name").textContent = pets[currentPet].name;
+      document.getElementById("pet-desc").textContent = pets[currentPet].desc;
+    } else {
+      document.getElementById("pet-card").classList.add("hidden");
+      document.getElementById("end-message").classList.remove("hidden");
+    }
   }
-
-  function swipePet(choice) {
-    if (pets.length === 0) return;
-    const card = stack.firstChild;
-    card.style.transform =
-      choice === "yes"
-        ? "translateX(400px) rotate(20deg)"
-        : "translateX(-400px) rotate(-20deg)";
-    card.style.opacity = 0;
-    setTimeout(() => {
-      pets.shift();
-      renderStack();
-    }, 300);
-  }
-
-  document.getElementById("yesBtn").addEventListener("click", () => swipePet("yes"));
-  document.getElementById("noBtn").addEventListener("click", () => swipePet("no"));
-
-  function renderStack() {
-  stack.innerHTML = "";
-  if (pets.length === 0) {
-    stack.innerHTML = `
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
-        <h3 class="text-xl font-bold text-gray-700">No more pets available 🐾</h3>
-        <p class="text-gray-500 mt-2">Check back later for more furry friends!</p>
-      </div>
-    `;
-    buttons.style.display = "none"; // hide buttons when no more pets
-    return;
-  }
-
-  pets.forEach((pet, index) => {
-    const card = document.createElement("div");
-    card.className =
-      "pet-card bg-white rounded-2xl shadow-lg p-4 text-center absolute inset-0 transition-all duration-300";
-    card.style.zIndex = pets.length - index;
-    card.innerHTML = `
-      <img src="${pet.img}" alt="${pet.name}" class="mx-auto rounded-lg mb-4 max-h-48 object-cover">
-      <h3 class="text-xl font-bold">${pet.name}</h3>
-      <p class="text-gray-600">${pet.desc}</p>
-    `;
-    stack.appendChild(card);
-  });
-}
-
 </script>
+
 
 
   <!-- Footer -->
