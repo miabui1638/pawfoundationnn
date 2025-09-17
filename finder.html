@@ -64,58 +64,6 @@
   </section>
 
 
-  <!-- Pet Finder (Tinder-style swipe) -->
-<section id="adoption" class="py-20 bg-blue-50">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl font-bold text-blue-800 mb-8">Find Your Pet</h2>
-
-    <!-- Pet Card -->
-    <div id="pet-card" class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center">
-      <img id="pet-img" src="bella.png" alt="Pet" class="w-64 h-64 object-cover rounded-xl mb-4">
-      <h3 id="pet-name" class="text-xl font-semibold text-blue-700">Bella</h3>
-      <p id="pet-desc" class="text-gray-600">Playful Golden Retriever</p>
-    </div>
-
-    <!-- Yes/No Buttons -->
-    <div class="flex justify-center space-x-6 mt-6">
-      <button onclick="nextPet()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full text-lg font-bold">
-        ❌ No
-      </button>
-      <button onclick="nextPet()" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full text-lg font-bold">
-        ✅ Yes
-      </button>
-    </div>
-
-    <!-- End Message -->
-    <p id="end-message" class="hidden text-xl font-bold text-blue-800 mt-6">
-      🐾 No more pets available 🐾
-    </p>
-  </div>
-</section>
-
-<script>
-  const pets = [
-    { name: "Bella", img: "bella.png", desc: "Playful Golden Retriever" },
-    { name: "Milo", img: "milo.png", desc: "Curious little kitten" },
-    { name: "Max", img: "max.png", desc: "Energetic Labrador" }
-  ];
-
-  let currentPet = 0;
-
-  function nextPet() {
-    currentPet++;
-    if (currentPet < pets.length) {
-      document.getElementById("pet-img").src = pets[currentPet].img;
-      document.getElementById("pet-name").textContent = pets[currentPet].name;
-      document.getElementById("pet-desc").textContent = pets[currentPet].desc;
-    } else {
-      document.getElementById("pet-card").classList.add("hidden");
-      document.getElementById("end-message").classList.remove("hidden");
-    }
-  }
-</script>
-
-
     // fallback for iframe
     (function() {
       const iframe = document.getElementById('pawBotIframe');
