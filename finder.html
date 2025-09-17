@@ -64,24 +64,6 @@
   </section>
 
 
-    // fallback for iframe
-    (function() {
-      const iframe = document.getElementById('pawBotIframe');
-      const fallback = document.getElementById('chatFallback');
-      let loaded = false;
-
-      iframe.addEventListener('load', () => {
-        loaded = true;
-        fallback.classList.add('hidden');
-      });
-
-      setTimeout(() => {
-        if (!loaded) {
-          fallback.classList.remove('hidden');
-        }
-      }, 3000);
-    })();
-  </script>
 
   <!-- Footer -->
   <footer class="bg-blue-50 text-white text-center p-4 mt-10">
