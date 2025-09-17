@@ -25,27 +25,43 @@
     </nav>
   </header>
 
-  <!-- Pet Finder  -->
-<section id="finder" class="py-16 bg-blue-50">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="text-3xl font-bold mb-6 text-blue-700">Find Your Pet ❤️🐶🐱</h2>
-    <p class="text-gray-600 mb-6">
-      Meet <strong>Furrever Friend</strong>, our friendly AI assistant! 🐾  
-      Chat with them to discover the perfect companion based on your lifestyle, preferences, and learn more about PAW foundation.  
-    </p>
+   <!-- Pet Finder AI Section -->
+  <section id="finder" class="py-16 bg-blue-50">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6 text-blue-700">Find Your Pet ❤️🐶🐱</h2>
+      <p class="text-gray-600 mb-6">
+        Meet <strong>Furrever Friend</strong>, our friendly AI assistant! 🐾  
+        Chat with them to discover the perfect furry companion based on your lifestyle and preferences.  
+      </p>
 
-    <!-- AI Bot Embed -->
-    <div class="bg-white shadow-lg rounded-2xl p-4 max-w-xl mx-auto">
-      <iframe 
-        src="<iframe src="https://bots.easy-peasy.ai/bot/711eac73-21ec-4af8-8b83-f1a11db9363f" 
-        width="100%" 
-        height="600" 
-        frameborder="0" 
-        style="border-radius: 12px;">
-      </iframe>
+      <!-- AI Bot Embed -->
+      <div class="bg-white shadow-lg rounded-2xl p-4 max-w-xl mx-auto">
+        <div id="chatContainer">
+          <iframe
+            id="pawBotIframe"
+            src="https://bots.easy-peasy.ai/bot/711eac73-21ec-4af8-8b83-f1a11db9363f?mode=iframe"
+            width="100%"
+            height="600"
+            frameborder="0"
+            style="border-radius: 12px;"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <!-- fallback shown if iframe doesn't load -->
+        <div id="chatFallback" class="hidden text-center mt-4">
+          <p class="text-gray-700 mb-2">
+            Sorry — we couldn’t embed the chat here.  
+            You can still open it in a new tab:
+          </p>
+          <a id="chatFallbackLink" class="text-blue-600 underline" target="_blank" rel="noopener noreferrer"
+             href="https://bots.easy-peasy.ai/bot/711eac73-21ec-4af8-8b83-f1a11db9363f">
+            Open Furrever Friend in a new tab
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
   <!-- Pet Finder (Tinder-style swipe) -->
@@ -100,6 +116,24 @@
 </script>
 
 
+    // fallback for iframe
+    (function() {
+      const iframe = document.getElementById('pawBotIframe');
+      const fallback = document.getElementById('chatFallback');
+      let loaded = false;
+
+      iframe.addEventListener('load', () => {
+        loaded = true;
+        fallback.classList.add('hidden');
+      });
+
+      setTimeout(() => {
+        if (!loaded) {
+          fallback.classList.remove('hidden');
+        }
+      }, 3000);
+    })();
+  </script>
 
   <!-- Footer -->
   <footer class="bg-blue-50 text-white text-center p-4 mt-10">
